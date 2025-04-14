@@ -1,0 +1,58 @@
+[project]
+name = "weathersensors-cli"
+version = "0.1.0"
+description = "A command-line tool for reading weather data from sensors on an Orange Pi"
+readme = "README.md"
+requires-python = ">=3.10"
+
+authors = [
+    { name = "Isaac Kroeker", email = "ikroeker@thekingsschool.ca" }
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Intended Audience :: Developers",
+    "Environment :: Console",
+    "Topic :: Scientific/Engineering :: Atmospheric Science"
+]
+
+dependencies = [
+    "bme680>=2.0.0",
+    "smbus2>=0.5.0",
+    "tomli>=2.2.1",
+]
+
+[project.scripts]
+weathersensors = "main:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+markers = [
+    "hardware: marks tests that require I2C hardware connected"
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5"
+]
+
+[sensors.bme680]
+bus = 2
+address = "0x76"
+
+[sensors.ads7830]
+bus = 2
+address = "0x48"
+
+[sensors.ds2482]
+bus = 2
+address = "0x18"
