@@ -130,7 +130,7 @@ wheels = [
 
 [[package]]
 name = "weathersensors-cli"
-version = "0.1.0"
+version = "1.0.1"
 source = { virtual = "." }
 dependencies = [
     { name = "bme680" },

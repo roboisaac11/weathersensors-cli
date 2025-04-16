@@ -50,21 +50,22 @@ class DS18B20Reader:
         if not self.output_path:
             raise FileNotFoundError(f"No DS18B20 devices found. Could not find file at {constants.OUTPUT_PATH}")
 
-    def read_temperature(self) -> float:
+    def get_readings(self) -> dict:
         """Read the current temperature from the DS18B20 sensor.
 
         Reads the raw temperature value from the sensor's output file
         and converts it to degrees Celsius.
 
         Returns:
-            float: Temperature in degrees Celsius.
+            dict: Dictionary containing the temperature in degrees Celsius.
 
         Note:
             The raw temperature value is divided by 1000 to convert
             from millidegrees to degrees Celsius.
         """
-
         with open(self.output_path[0], 'r') as f:
             content: str = f.read()
             temp: str = content.split("t=")[1]
-            return float(temp) / 1000
+            return {
+                "temperature": float(temp) / 1000
+            }

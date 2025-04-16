@@ -61,7 +61,7 @@ class BME680Reader:
         self.sensor.set_gas_heater_duration(150)
         self.sensor.select_gas_heater_profile(0)
     
-    def read_sensor(self) -> dict | None:
+    def get_readings(self) -> dict | None:
         """Read current sensor data from the BME680.
 
         Attempts to read the current sensor data and returns it as a dictionary

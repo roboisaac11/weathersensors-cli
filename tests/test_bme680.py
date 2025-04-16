@@ -3,7 +3,7 @@ from BME680 import BME680Reader
 
 def test_bme680_read_sensor_nohardware(mock_bme680_sensor):
     reader = BME680Reader(2, 0x77, _debug_sensor=mock_bme680_sensor)
-    result = reader.read_sensor()
+    result = reader.get_readings()
 
     assert result == {
         "temperature": 22.0,
@@ -19,7 +19,7 @@ def test_bme680_read_sensor_hardware():
     except Exception as e:
         pytest.fail(f"Error initializing BME680: {e}", pytrace=False)
 
-    result = reader.read_sensor()
+    result = reader.get_readings()
 
     assert len(result) == 4
 
